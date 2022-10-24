@@ -1,0 +1,159 @@
+<div class="col-md-6 offset-md-3">
+
+    <!--<form action="{{#unless direccion.id}}/new-direccion{{else}}/update-direccion/{{direccion.id}}{{/unless}}"
+        method="POST">
+
+
+        <div>
+            <label for="Calle">Calle:</label>
+            <input type="number" name="Calle" placeholder="Calle" id="Calle" value="{{direccion.Calle}}">
+        </div>
+        <div>
+            <label for="entre1"> entre calle:</label>
+            <input type="number" name="entre1" placeholder="entre1" id="entre1" value="{{direccion.entre1}}">
+        </div>
+        <div>
+            <label for="entre2">y calle:</label>
+            <input type="number" name="entre2" placeholder="entre2" id="entre2" value="{{direccion.entre2}}">
+        </div>
+        <div>
+            <input name="estado" type="radio" value="No hay lugar" />No hay Lugar
+            <input name="estado" type="radio" value="Ultimo lugar" />Ultimo Lugar
+            <input name="estado" type="radio" value=2 /> 2
+            <input name="estado" type="radio" value=3 /> 3
+            <input name="estado" type="radio" value="Mas de 4" /> +4
+            <input name="estado" type="radio" value="Lugar Disponible" />Mucho Lugar
+
+        </div>
+        <div>
+            <button>submit</button>
+        </div>
+
+
+    </form>-->
+
+
+    <div class="card text-white bg-primary mb-3">
+        <div class="card-header">Direcciones</div>
+        <div class="card-body">
+            <form action="{{#unless direccion.id}}/new-direccion{{else}}/update-direccion/{{direccion.id}}{{/unless}}"
+                method="POST">
+
+                <div class="row">
+                    <div class="col">
+                        <label for="Calle">Calle:</label>
+                        <input type="number" name="Calle" placeholder="Calle" id="Calle" value="{{direccion.Calle}}"
+                            class="form-control mb-2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="entre1"> entre calle:</label>
+                        <input type="number" name="entre1" placeholder="entre1" id="entre1" value="{{direccion.entre1}}"
+                            class="form-control mb-2">
+                    </div>
+                    <div>
+                        <label for="entre2">y calle:</label>
+                        <input type="number" name="entre2" placeholder="entre2" id="entre2" value="{{direccion.entre2}}"
+                            class="form-control mb-2">
+                    </div>
+                </div>
+                <div class="row">
+                    <!--<fieldset class="form-group">
+
+                        <div class="form-check">
+                            <input name="estado" type="radio" value="No hay lugar" />No hay Lugar
+                        </div>
+                        <div class="form-check">
+                            <input name="estado" type="radio" value="Ultimo lugar" />Ultimo Lugar
+                        </div>
+                        <div class="form-check">
+                            <input name="estado" type="radio" value=2 /> 2
+                            <input name="estado" type="radio" value=3 /> 3
+                            <input name="estado" type="radio" value="Mas de 4" /> +4
+                        </div>
+                        <div class="form-check">
+                            <input name="estado" type="radio" value="Lugar Disponible" />Mucho Lugar
+                        </div>
+                    </fieldset>-->
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="estado" id="No hay Lugar" autocomplete="off"
+                            checked="" value="No hay Lugar">
+                        <label class="btn btn-outline-primary" for="No hay Lugar">No hay Lugar</label>
+                        <input type="radio" class="btn-check" name="estado" id="Ultimo lugar" autocomplete="off"
+                            checked="" value="Ultimo lugar">
+                        <label class="btn btn-outline-primary" for="Ultimo lugar">Ultimo lugar</label>
+                        <input type="radio" class="btn-check" name="estado" id="2" autocomplete="off"
+                            checked="" value="2">
+                        <label class="btn btn-outline-primary" for="2">2</label>
+                        <input type="radio" class="btn-check" name="estado" id="3" autocomplete="off"
+                            checked="" value="3">
+                        <label class="btn btn-outline-primary" for="3">3</label>
+                        <input type="radio" class="btn-check" name="estado" id="+4" autocomplete="off"
+                            checked="" value="+4">
+                        <label class="btn btn-outline-primary" for="+4">+4</label>
+                        <input type="radio" class="btn-check" name="estado" id="Mucho Lugar" autocomplete="off"
+                            checked="" value="Mucho Lugar">
+                        <label class="btn btn-outline-primary" for="Mucho Lugar">Mucho Lugar</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    {{#if direcciones.id}}
+                    <button>Actualizar</button>
+                    <a href="/" class="btn btn-secondary"></a>
+                    {{else}}
+                    <button class="btn btn-success btn-block">Agregar</button>
+                    {{/if}}
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+    <!--<ul>
+    {{#each direcciones}}
+    <li>
+        <h3>{{Calle}} {{entre1}} {{entre2}}</h3>
+        <p>{{estado}}</p>
+    </li>
+
+    <a href="/delete-direccion/{{id}}">Delete</a>
+
+    <a href="/edit-direccion/{{id}}">Edit</a>
+    {{/each}}
+</ul>
+-->
+
+    <table class="table table-hover table-sm table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Calle</th>
+                <th scope="col">Entre calle</th>
+                <th scope="col">y calle </th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#if direcciones}}
+            {{#each direcciones}}
+            <tr class="table-primary">
+                <td>{{Calle}}</td>
+                <td>{{entre1}} </td>
+                <td>{{entre2}}</td>
+                <td>{{estado}}</td>
+                <td>
+                    <a href="/delete-direccion/{{id}}">Delete</a>
+                    <a href="/edit-direccion/{{id}}">Edit</a>
+                </td>
+            </tr>
+            {{/each}}
+            {{else}}
+            <tr class="table-danger">
+                <td>No existen direcciones publicadas</td>
+            </tr>
+            {{/if}}
+        </tbody>
+    </table>
+</div>
