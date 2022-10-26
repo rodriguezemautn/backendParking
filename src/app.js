@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 const exphbs = require("express-handlebars");
+const apiRouter = require('./routes/api')
 
 const {db} = require('./firebase')
 
@@ -18,7 +19,10 @@ app.use(morgan('dev'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(require("./routes/index"));
+
+
+//app.use(require("./routes/api"));
+app.use('/api', apiRouter)
 
 app.use(express.static(path.join(__dirname, 'public')));
 
